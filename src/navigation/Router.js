@@ -1,11 +1,15 @@
 import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom";
 import Loading from "../components/loading/Loading";
 import { Suspense } from "react";
-import { routes } from "./nav.data";
-import { LOGIN_URL } from "./routes";
+
+import { LANDING_URL, LOGIN_URL, SIGN_UP_URL } from "./routes";
 import LoginPage from "../pages/common/LoginPage";
 import ErrorPage from "../pages/common/ErrorPage";
 import DashboardLayout from "../layouts/dashboard/DashboardLayout";
+import { adminRoutes, userRoutes } from "./nav.data";
+import { ROLE_ID } from "../constans/localStorage";
+import { SignUpPage } from "../pages/common/SignUpPage";
+import { LandingPage } from "../pages/common/LandingPage";
 
 const Router = () => {
   const router = createBrowserRouter([
@@ -17,12 +21,25 @@ const Router = () => {
           </Suspense>
         </DashboardLayout>
       ),
-      children: routes,
+      children:
+        localStorage.getItem(ROLE_ID) === "1" ? userRoutes : adminRoutes,
       errorElement: <ErrorPage />,
     },
     {
       path: LOGIN_URL,
       element: <LoginPage />,
+    },
+    {
+      path: SIGN_UP_URL,
+      element: <SignUpPage />,
+    },
+    {
+      path: LANDING_URL,
+      element: <LandingPage />,
+    },
+    {
+      path: "*",
+      element: <ErrorPage />,
     },
   ]);
 

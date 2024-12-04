@@ -1,3 +1,6 @@
+import { AdminDevicesPage } from "../pages/admin/devices/AdminDevicesPage";
+import { MediaPage } from "../pages/admin/media/MediaPage";
+import UsersPage from "../pages/admin/users/UsersPage";
 import { AdvertisementsList } from "../pages/secure/Advertisements/AdvertisementsList";
 import { Statistics } from "../pages/secure/Advertisements/Statistics";
 import { DeviceList } from "../pages/secure/DeviceList/DeviceList";
@@ -6,12 +9,15 @@ import { Timetable } from "../pages/secure/Timetable/Timetable";
 import {
   AD_STATISTIC_URL,
   AD_URL,
-  DIVICES_LIST,
-  DIVICES_GROUP_LIST,
+  DEVICES_URL,
+  DIVICES_GROUP_URL,
   TIMETABLE_URL,
+  ADMIN_DEVICES_URL,
+  MEDIA_URL,
+  USERS_URL,
 } from "./routes";
 
-export const routes = [
+export const userRoutes = [
   {
     path: AD_URL,
     element: <AdvertisementsList />,
@@ -21,15 +27,30 @@ export const routes = [
     element: <Statistics />,
   },
   {
-    path: DIVICES_LIST,
+    path: DEVICES_URL,
     element: <DeviceList />,
   },
   {
-    path: DIVICES_GROUP_LIST,
+    path: DIVICES_GROUP_URL,
     element: <DevicesGroupList />,
   },
   {
     path: TIMETABLE_URL,
     element: <Timetable />,
+  },
+];
+
+export const adminRoutes = [
+  {
+    path: ADMIN_DEVICES_URL,
+    element: <AdminDevicesPage />,
+  },
+  {
+    path: MEDIA_URL,
+    element: <MediaPage />,
+  },
+  {
+    path: USERS_URL,
+    element: <UsersPage />,
   },
 ];

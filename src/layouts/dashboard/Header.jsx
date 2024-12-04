@@ -10,14 +10,26 @@ import Button from "@mui/material/Button";
 import MenuItem from "@mui/material/MenuItem";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
-import { AD_URL, DIVICES_LIST, TIMETABLE_URL } from "../../navigation/routes";
+import {
+  AD_URL,
+  ADMIN_DEVICES_URL,
+  DEVICES_URL,
+  MEDIA_URL,
+  TIMETABLE_URL,
+  USERS_URL,
+} from "../../navigation/routes";
+import { ROLE_ID } from "../../constans/localStorage";
 
-const pages = [
+const userPages = [
   { name: "Список рекламы", path: AD_URL },
-
   { name: "Расписание", path: TIMETABLE_URL },
+  { name: "Список устройств", path: DEVICES_URL },
+];
 
-  { name: "Список устройств", path: DIVICES_LIST },
+const adminPages = [
+  { name: "Пользователи", path: USERS_URL },
+  { name: "Медиа-сервер", path: MEDIA_URL },
+  { name: "Устройства", path: ADMIN_DEVICES_URL },
 ];
 
 const Header = () => {
@@ -36,6 +48,8 @@ const Header = () => {
   const handleGoPage = (path) => {
     navigate(path);
   };
+
+  const pages = localStorage.getItem(ROLE_ID) === 1 ? userPages : adminPages;
 
   return (
     <>

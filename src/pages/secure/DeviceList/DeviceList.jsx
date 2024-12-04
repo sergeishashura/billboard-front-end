@@ -8,9 +8,9 @@ import {
   Button,
   Stack,
 } from "@mui/material";
-import { devices } from "../../../data"; // Убедитесь, что путь к данным правильный
+import { devices } from "../../../data";
 import { useNavigate } from "react-router-dom";
-import { DIVICES_GROUP_LIST } from "../../../navigation/routes";
+import { DIVICES_GROUP_URL } from "../../../navigation/routes";
 
 export const DeviceList = () => {
   const naviagate = useNavigate();
@@ -21,7 +21,7 @@ export const DeviceList = () => {
         <Typography variant="h4" gutterBottom>
           Список устройств
         </Typography>
-        <Button onClick={() => naviagate(DIVICES_GROUP_LIST)}>
+        <Button onClick={() => naviagate(DIVICES_GROUP_URL)}>
           Группы устройств
         </Button>
       </Stack>

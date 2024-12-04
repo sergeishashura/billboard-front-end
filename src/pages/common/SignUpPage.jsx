@@ -1,4 +1,5 @@
 import {
+  alpha,
   Box,
   Card,
   IconButton,
@@ -7,40 +8,53 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import Iconify from "../../components/Iconofy/Iconofy";
 import eyeFill from "../../assets/icons/eye-fill.svg";
 import eyeOffFill from "../../assets/icons/eye-off-fill.svg";
-import Iconify from "../../components/Iconofy/Iconofy";
+import { useNavigate } from "react-router-dom";
+import { useTheme } from "@emotion/react";
+import { useState } from "react";
+import { postSignUp } from "../../requests/signup/postSignUp";
 import { LoadingButton } from "@mui/lab";
 import { bgGradient } from "../../theme/css";
-import { alpha, useTheme } from "@mui/material/styles";
-import { AD_URL, USERS_URL } from "../../navigation/routes";
-import { postLogin } from "../../requests/login/postLogin";
-import { ROLE_ID, TOKEN } from "../../constans/localStorage";
+import { LOGIN_URL } from "../../navigation/routes";
 
-const LoginPage = () => {
+export const SignUpPage = () => {
   const navigate = useNavigate();
   const theme = useTheme();
 
   const [showPassword, setShowPassword] = useState(false);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
   const [isLoginButtonClicked, setIsLoginButtonClicked] = useState(false);
 
   const handleLogin = async () => {
+    if (password !== confirmPassword) {
+      alert("Пароли не совпадают!");
+      return;
+    }
+
+    setIsLoginButtonClicked(true);
+
     try {
-      const response = await postLogin(username, password);
-      console.log(response, "yolo");
-      localStorage.setItem(TOKEN, response.data.token);
-      localStorage.setItem(ROLE_ID, response.data.RoleID);
-      if (response.data.RoleID === "1") {
-        navigate(AD_URL);
-      } else {
-        navigate(USERS_URL);
+      const response = await postSignUp(username, password);
+
+      if (response.status === 201) {
+        navigate(LOGIN_URL);
       }
     } catch (error) {
-      console.error(error);
+      if (error.response) {
+        if (error.response.status === 400) {
+          alert("Ошибка: неверные данные");
+        } else if (error.response.status === 409) {
+          alert("Такой пользователь уже зарегистрирован");
+        }
+      } else {
+        console.error("Ошибка:", error);
+      }
+    } finally {
+      setIsLoginButtonClicked(false);
     }
   };
 
@@ -75,19 +89,40 @@ const LoginPage = () => {
             ),
           }}
         />
+
+        <TextField
+          name="confirm-password"
+          label={"Повторите пароль"}
+          type={showPassword ? "text" : "password"}
+          value={confirmPassword}
+          onChange={(e) => setConfirmPassword(e.target.value)}
+          onClick={() => setIsLoginButtonClicked(false)}
+          InputProps={{
+            endAdornment: (
+              <InputAdornment position="end">
+                <IconButton
+                  onClick={() => setShowPassword(!showPassword)}
+                  edge="end"
+                >
+                  <Iconify icon={showPassword ? eyeFill : eyeOffFill} />
+                </IconButton>
+              </InputAdornment>
+            ),
+          }}
+        />
       </Stack>
 
       <LoadingButton
         fullWidth
         size="large"
-        type="submit"
+        type="button"
         variant="contained"
         color="inherit"
         loading={isLoginButtonClicked}
         sx={{ mt: 5 }}
-        onClick={() => handleLogin()}
+        onClick={handleLogin}
       >
-        Войти
+        Зарегистрироваться
       </LoadingButton>
     </>
   );
@@ -110,7 +145,7 @@ const LoginPage = () => {
           }}
         >
           <Typography variant="h4" sx={{ mb: 2 }}>
-            Вход в приложение
+            Регистрация в приложении
           </Typography>
 
           {renderForm}
@@ -119,5 +154,3 @@ const LoginPage = () => {
     </Box>
   );
 };
-
-export default LoginPage;
