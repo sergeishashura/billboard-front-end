@@ -11,6 +11,7 @@ import {
 } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { USER_LOGS_URL } from "../../../navigation/routes";
+import { deleteUser } from "../../../requests/users/deleteUser";
 
 const UsersPage = () => {
   const [users, setUsers] = useState([]);
@@ -30,10 +31,18 @@ const UsersPage = () => {
     fetchUsers();
   }, []);
 
-  const handleDelete = () => {};
+  const handleDelete = async (user_id) => {
+    try {
+      const response = await deleteUser(user_id);
+      console.log(response);
+      setUsers((prevUsers) => prevUsers.filter((user) => user.ID !== user_id));
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
-  const handleGoLogs = () => {
-    navigate(USER_LOGS_URL);
+  const handleGoLogs = (id) => {
+    navigate(USER_LOGS_URL.replace(":userId", id));
   };
 
   return (
@@ -50,6 +59,10 @@ const UsersPage = () => {
               <Grid item xs={12} sm={3}>
                 <Typography variant="h6">Полное имя:</Typography>
                 <Typography variant="body1">{user.FullName}</Typography>
+              </Grid>
+              <Grid item xs={12} sm={3}>
+                <Typography variant="h6">ID:</Typography>
+                <Typography variant="body1">{user.ID}</Typography>
               </Grid>
               <Grid item xs={12} sm={3}>
                 <Typography variant="h6">Телефон:</Typography>
@@ -71,13 +84,17 @@ const UsersPage = () => {
                 sm={3}
                 style={{ display: "flex", justifyContent: "space-between" }}
               >
-                <Button color="error" variant="contained">
+                <Button
+                  color="error"
+                  variant="contained"
+                  onClick={() => handleDelete(user.ID)}
+                >
                   Удалить
                 </Button>
                 <Button
                   color="primary"
                   variant="contained"
-                  onClick={handleGoLogs}
+                  onClick={() => handleGoLogs(user.ID)}
                 >
                   Просмотр логов
                 </Button>

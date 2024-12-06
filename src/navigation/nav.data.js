@@ -1,5 +1,6 @@
 import { AdminDevicesPage } from "../pages/admin/devices/AdminDevicesPage";
 import { MediaPage } from "../pages/admin/media/MediaPage";
+import { LogsPage } from "../pages/admin/users/LogsPage";
 import UsersPage from "../pages/admin/users/UsersPage";
 import { AdvertisementsList } from "../pages/secure/Advertisements/AdvertisementsList";
 import { Statistics } from "../pages/secure/Advertisements/Statistics";
@@ -15,6 +16,7 @@ import {
   ADMIN_DEVICES_URL,
   MEDIA_URL,
   USERS_URL,
+  USER_LOGS_URL,
 } from "./routes";
 
 export const userRoutes = [
@@ -52,5 +54,9 @@ export const adminRoutes = [
   {
     path: USERS_URL,
     element: <UsersPage />,
+  },
+  {
+    path: USER_LOGS_URL,
+    element: <LogsPage />,
   },
 ];
