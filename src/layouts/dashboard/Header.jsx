@@ -9,16 +9,17 @@ import Container from "@mui/material/Container";
 import Button from "@mui/material/Button";
 import MenuItem from "@mui/material/MenuItem";
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   AD_URL,
   ADMIN_DEVICES_URL,
   DEVICES_URL,
+  LOGIN_URL,
   MEDIA_URL,
   TIMETABLE_URL,
   USERS_URL,
 } from "../../navigation/routes";
-import { ROLE_ID } from "../../constans/localStorage";
+import { ROLE_ID, TOKEN } from "../../constans/localStorage";
 
 const userPages = [
   { name: "Список рекламы", path: AD_URL },
@@ -35,6 +36,12 @@ const adminPages = [
 const Header = () => {
   const navigate = useNavigate();
 
+  useEffect(() => {
+    if (!localStorage.getItem(TOKEN)) {
+      navigate(LOGIN_URL);
+    }
+  });
+
   const [anchorElNav, setAnchorElNav] = useState(null);
 
   const handleOpenNavMenu = (event) => {
@@ -49,7 +56,13 @@ const Header = () => {
     navigate(path);
   };
 
-  const pages = localStorage.getItem(ROLE_ID) === 1 ? userPages : adminPages;
+  const pages = localStorage.getItem(ROLE_ID) === "2" ? adminPages : userPages;
+
+  const handleExit = () => {
+    localStorage.removeItem(ROLE_ID);
+    localStorage.removeItem(TOKEN);
+    navigate(LOGIN_URL);
+  };
 
   return (
     <>
@@ -137,6 +150,9 @@ const Header = () => {
                 </Button>
               ))}
             </Box>
+            <Button variant="contained" color="error" onClick={handleExit}>
+              Выход
+            </Button>
           </Toolbar>
         </Container>
       </AppBar>

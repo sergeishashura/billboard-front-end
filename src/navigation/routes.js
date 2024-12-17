@@ -14,9 +14,13 @@ export const AD_STATISTIC_URL = `${AD_URL}/:adId`;
 
 export const TIMETABLE_URL = "/timetable";
 
+export const CHANGE_TIMETABLE_URL = "/timetable/:id";
+
 export const DEVICES_URL = "/devices";
 
 export const DIVICES_GROUP_URL = `${DEVICES_URL}/group`;
+
+export const CHANGE_GROUP_URL = `${DIVICES_GROUP_URL}/change/:id`;
 
 //------------------------------ADMIN------------------------------
 

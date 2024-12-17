@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { getUsers } from "../../../requests/users/getUsers";
+import { getUsers } from "../../../requests/admin/users/getUsers";
 import {
   Container,
   Card,
@@ -11,7 +11,7 @@ import {
 } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { USER_LOGS_URL } from "../../../navigation/routes";
-import { deleteUser } from "../../../requests/users/deleteUser";
+import { deleteUser } from "../../../requests/admin/users/deleteUser";
 
 const UsersPage = () => {
   const [users, setUsers] = useState([]);
@@ -58,7 +58,7 @@ const UsersPage = () => {
             <Grid container spacing={3}>
               <Grid item xs={12} sm={3}>
                 <Typography variant="h6">Полное имя:</Typography>
-                <Typography variant="body1">{user.FullName}</Typography>
+                <Typography variant="body1">{user.UserName}</Typography>
               </Grid>
               <Grid item xs={12} sm={3}>
                 <Typography variant="h6">ID:</Typography>

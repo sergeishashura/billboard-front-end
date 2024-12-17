@@ -1,5 +1,5 @@
-import landingInterceptor from "../axios-configs/landingInterceptor";
-import { USER_LOGS_URL } from "../urls";
+import landingInterceptor from "../../axios-configs/landingInterceptor";
+import { USER_LOGS_URL } from "../../urls";
 
 export const getUserLogs = async (userId) => {
   try {

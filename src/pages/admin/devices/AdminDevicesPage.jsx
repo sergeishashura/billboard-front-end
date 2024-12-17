@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { getDevices } from "../../../requests/devices/getDevices";
+
 import {
   Container,
   Card,
@@ -9,8 +9,9 @@ import {
   Button,
   Stack,
 } from "@mui/material";
-import { postAddDevice } from "../../../requests/devices/postAddDevice";
-import { deleteDevice } from "../../../requests/devices/deleteDevice";
+import { getDevices } from "../../../requests/admin/devices/getDevices";
+import { postAddDevice } from "../../../requests/admin/devices/postAddDevice";
+import { deleteDevice } from "../../../requests/admin/devices/deleteDevice";
 
 export const AdminDevicesPage = () => {
   const [devices, setDevices] = useState([]);

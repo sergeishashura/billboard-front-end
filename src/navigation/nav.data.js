@@ -2,11 +2,13 @@ import { AdminDevicesPage } from "../pages/admin/devices/AdminDevicesPage";
 import { MediaPage } from "../pages/admin/media/MediaPage";
 import { LogsPage } from "../pages/admin/users/LogsPage";
 import UsersPage from "../pages/admin/users/UsersPage";
-import { AdvertisementsList } from "../pages/secure/Advertisements/AdvertisementsList";
-import { Statistics } from "../pages/secure/Advertisements/Statistics";
-import { DeviceList } from "../pages/secure/DeviceList/DeviceList";
-import { DevicesGroupList } from "../pages/secure/DeviceList/DevicesGroupList";
-import { Timetable } from "../pages/secure/Timetable/Timetable";
+import { AdvertisementsList } from "../pages/user/Advertisements/AdvertisementsList";
+import { Statistics } from "../pages/user/Advertisements/Statistics";
+import { DeviceList } from "../pages/user/DeviceList/DeviceList";
+import { DevicesGroupList } from "../pages/user/DeviceList/DevicesGroupList";
+import { ChangeGroup } from "../pages/user/DeviceList/СhangeGroup";
+import { ChangeTimetable } from "../pages/user/Timetable/ChangeTimetable";
+import { Timetable } from "../pages/user/Timetable/Timetable";
 import {
   AD_STATISTIC_URL,
   AD_URL,
@@ -17,6 +19,8 @@ import {
   MEDIA_URL,
   USERS_URL,
   USER_LOGS_URL,
+  CHANGE_GROUP_URL,
+  CHANGE_TIMETABLE_URL,
 } from "./routes";
 
 export const userRoutes = [
@@ -39,6 +43,14 @@ export const userRoutes = [
   {
     path: TIMETABLE_URL,
     element: <Timetable />,
+  },
+  {
+    path: CHANGE_TIMETABLE_URL,
+    element: <ChangeTimetable />,
+  },
+  {
+    path: CHANGE_GROUP_URL,
+    element: <ChangeGroup />,
   },
 ];
 

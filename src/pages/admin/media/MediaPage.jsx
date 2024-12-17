@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
-import { getAllMedia } from "../../../requests/media/getAllMedia";
-import { deleteMedia } from "../../../requests/media/deleteMedia";
+
 import {
   Container,
   Typography,
@@ -11,6 +10,8 @@ import {
   Box,
   Alert,
 } from "@mui/material";
+import { getAllMedia } from "../../../requests/admin/media/getAllMedia";
+import { deleteMedia } from "../../../requests/admin/media/deleteMedia";
 
 export const MediaPage = () => {
   const [media, setMedia] = useState([]);

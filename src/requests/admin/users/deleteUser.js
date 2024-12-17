@@ -1,5 +1,5 @@
-import landingInterceptor from "../axios-configs/landingInterceptor";
-import { DELETE_USER_URL } from "../urls";
+import landingInterceptor from "../../axios-configs/landingInterceptor";
+import { DELETE_USER_URL } from "../../urls";
 
 export const deleteUser = async (userId) => {
   try {

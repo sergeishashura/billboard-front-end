@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { getUserLogs } from "../../../requests/users/getUserLogs";
+import { getUserLogs } from "../../../requests/admin/users/getUserLogs";
 import {
   Container,
   Typography,

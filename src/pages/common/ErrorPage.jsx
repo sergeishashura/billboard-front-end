@@ -1,11 +1,7 @@
 import { Alert, AlertTitle, Box, Card, Stack } from "@mui/material";
-import { Helmet } from "react-helmet-async";
-import { useRouteError } from "react-router-dom";
 
 const ErrorPage = () => {
-  const error = useRouteError();
-
-  console.log(error);
+  let error;
 
   return (
     <Box
@@ -13,10 +9,6 @@ const ErrorPage = () => {
         height: 1,
       }}
     >
-      <Helmet>
-        <title>Ошибка</title>
-      </Helmet>
-
       <Stack alignItems="center" justifyContent="center" sx={{ height: 1 }}>
         <Card
           sx={{
@@ -27,9 +19,9 @@ const ErrorPage = () => {
         >
           <Alert severity="error">
             <AlertTitle>
-              {error.status} {error.statusText || error.name}
+              {error?.status} {error?.statusText || error?.name}
             </AlertTitle>
-            {error.stack || error.message}
+            {error?.stack || error?.message}
           </Alert>
         </Card>
       </Stack>

@@ -1,5 +1,5 @@
-import landingInterceptor from "../axios-configs/landingInterceptor";
-import { USERS_URL } from "../urls";
+import landingInterceptor from "../../axios-configs/landingInterceptor";
+import { USERS_URL } from "../../urls";
 
 export const getUsers = async () => {
   try {
