@@ -10,6 +10,8 @@ export const SIGNUP_URL = `${HOST}/registration`;
 
 export const USER_URL = `${HOST}/user`;
 
+export const STATISTIC_URL = `${USER_URL}/statistic`;
+
 export const USER_MEDIA_URL = `${USER_URL}/media`;
 
 export const DEVICE_URL = `${USER_URL}/device`;
@@ -31,6 +33,8 @@ export const GROUP_DEVICES_URL = `${USER_DEVICES_GROUP_URL}/setup`;
 export const USER_SCHEDULE_LIST = `${USER_URL}/schedule/list`;
 
 export const USER_SCHEDULE_URL = `${USER_URL}/schedule/setting`;
+
+export const USER_UPDATE_SCHEDULE_URL = `${USER_URL}/schedule/setting/update/save`;
 
 //------------------------------ADMIN------------------------------
 
